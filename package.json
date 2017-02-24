@@ -1,0 +1,22 @@
+{
+  "name": "thundera",
+  "version": "1.0.0",
+  "description": "Input de dados em nodejs",
+  "main": "main.js",
+  "dependencies": {
+    "mqtt": "^2.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marquesgabriel/thundera.git"
+  },
+  "author": "marquesgabriel",
+  "bugs": {
+    "url": "https://github.com/marquesgabriel/thundera/issues"
+  },
+  "homepage": "https://github.com/marquesgabriel/thundera#readme"
+}
