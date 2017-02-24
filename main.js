@@ -49,7 +49,7 @@ function sendMessage(roomNumber){
   });
   if(empresa != undefined){
     process.stdout.write("Empresa encontrada, chamando "+empresa.name+"...\n");
-    client.publish('MyT', empresa.name + "! Te esperam lá fora");
+    client.publish('newMyT', empresa.name + "! Te esperam lá fora");
     client.end();
   }else{
     process.stdout.write("Empresa não encontrada. Tente novamente.\n");
