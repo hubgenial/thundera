@@ -1,15 +1,9 @@
-var mqtt = require('mqtt')
-var client = mqtt.connect('mqtt://192.168.1.11:1883');
+const config = require('./config.json');
+var mqtt = require('mqtt');
+var client = mqtt.connect('mqtt://' + config.mqttserver);
 var stdin = process.stdin;
 var text = "";
 var started = false;
-var empresas = [
-  {name: "Guenka", number: "301"},
-  {name: "Mystra", number: "302"},
-  {name: "Kuruvi", number: "303"},
-  {name: "Kiwano", number: "304"},
-  {name: "Tilit", number: "305"}
-];
 // without this, we would only get streams once enter is pressed
 stdin.setRawMode(true);
 // resume stdin in the parent process (node app won't quit all by itself
@@ -42,18 +36,6 @@ function inputNumber(){
 }
 
 function sendMessage(roomNumber){
-  process.stdout.write("procurando empresa...\n");
-  // faz o request da sala em algum lugar
-  var empresa = empresas.find(function (item){
-    return item.number == roomNumber;
-  });
-  if(empresa != undefined){
-    process.stdout.write("Empresa encontrada, chamando "+empresa.name+"...\n");
-    client.publish('newMyT', empresa.name + "! Te esperam lá fora");
-    client.end();
-  }else{
-    process.stdout.write("Empresa não encontrada. Tente novamente.\n");
-  }
-  // stdin.pause();
-  // process.exit();
+  client.publish(config.mqtttopic, roomNumber);
+  client.end();
 }
